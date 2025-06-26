@@ -5,11 +5,11 @@ from django.shortcuts import render
 # Create your Testview here.
 
 def index(request) :
-    return HttpResponse("Hello world,you are at the polls index")
+    return render(request, 'index.html')
 
 def dataRender(request) :
     return HttpResponse("Another respons")
 
 
 def htmlpage(request):
-    return render(request,'bootstrap_check.html')
+    return render(request,'index.html')
