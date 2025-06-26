@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import STATICFILES_DIRS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -120,9 +122,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILS_DIRS = [
+STATICFILES_DIRS = [
 
-    BASE_DIR / "static"
+    BASE_DIR / "static",
 
 ]
 
