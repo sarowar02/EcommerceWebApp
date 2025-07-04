@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,8 +41,28 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'product',
-    'crudapp'
+    'crudapp',
+    'accounts',
+    'rest_framework',
+    'rest_framework_simplejwt'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+# MIDDLEWARE = [
+#     'django.middleware.security.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,9 +70,9 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'accounts.middleware.LoginRequiredMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -60,7 +80,8 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+         'DIRS': [BASE_DIR / "templates"],
+        # 'DIRS': [BASE_DIR / 'accounts' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,6 +106,16 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+SESSION_COOKIE_AGE = 1209600
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -132,3 +163,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}

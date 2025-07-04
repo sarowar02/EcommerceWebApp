@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<!--<form method="post" class="card p-4 shadow-sm">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form.as_p }}-->
+<!--    <button type="submit" class="btn btn-primary">Login</button>-->
+<!--</form>-->
+
+
+    <div class="container text-center">
+        <div class="card" style="width: 30rem;">
+<!--    <img src="..." class="card-img-top" alt="...">-->
+        <div class="card-body">
+            <h2 class="card-title">Login</h2>
+            <form method="post" >
+                {% csrf_token %}
+                <p>
+                    <label for="id_email" class="form-text">Email:</label>
+                    <input type="email" class="form-control" name="email" maxlength="320" required="" id="id_email">
+                </p>
+                  <p>
+                    <label for="id_password" class="form-text">Password:</label>
+                    <input type="password" class="form-control" name="password" required="" id="id_password">
+                  </p>
+
+                <br>
+                <button type="submit" class="btn btn-primary block">Login</button>
+                <br>
+            </form>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
