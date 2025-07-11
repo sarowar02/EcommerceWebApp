@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from myproject import  views
+from myproject import views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('product/',include('product.urls')),
     path('crudapp/',include('crudapp.urls')),
     path('accounts/', include('accounts.urls')),
+    path('categories/',include('categories.urls')),
 
 ]

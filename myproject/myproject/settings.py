@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'crudapp',
     'accounts',
     'rest_framework',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'categories'
 ]
 
 REST_FRAMEWORK = {
